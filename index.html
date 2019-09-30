@@ -7,6 +7,35 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="./index.js"></script>
+    <button>edit text file</button>
+    <textarea></textarea>
+
+    <script>
+      const opt = {
+        type: "saveFile",
+        accepts: [
+          {
+            description: "Text file",
+            extensions: ["txt"],
+            mimeTypes: ["text/plain"]
+          }
+        ]
+      };
+      const button = document.querySelector("button");
+      const textarea = document.querySelector("textarea");
+      textarea.style.display = "none";
+
+      button.onclick = async () => {
+        const handler = await window.chooseFileSystemEntries(opt);
+        textarea.style.display = "block";
+        textarea.onchange = async () => {
+          const writer = await handler.createWriter();
+          await writer.truncate(0);
+          await writer.write(0, textarea.value);
+          await writer.close();
+        };
+        button.remove();
+      };
+    </script>
   </body>
 </html>
