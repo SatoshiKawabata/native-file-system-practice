@@ -1,0 +1,16 @@
+{
+  "name": "native-file-system-api-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build ; http-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.6.3",
+    "http-server": "^0.11.1"
+  }
+}
